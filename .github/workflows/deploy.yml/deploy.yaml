@@ -1,0 +1,56 @@
+name: Haber Botu CI/CD
+
+# Ne zaman çalışsın? -> Main dalına kod atıldığında
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # Manuel tetikleme butonu
+
+jobs:
+  # GÖREV 1: ALTYAPIYI GÜNCELLE (Terraform)
+  terraform:
+    name: 'Terraform Deploy'
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: /home/ibrahim/news-terraform # Terraform dosyaların nerede?
+
+    steps:
+    - name: Kodu Çek (Checkout)
+      uses: actions/checkout@v3
+
+    - name: AWS Kimliğini Tanıt
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Terraform Kurulumu
+      uses: hashicorp/setup-terraform@v2
+
+    - name: Terraform Başlat (Init)
+      run: terraform init
+
+    - name: Altyapıyı Kur (Apply)
+      # -auto-approve: Bana soru sorma, direkt yap demek.
+      run: terraform apply -auto-approve
+
+---
+
+### 🚀 Adım 4: Fırlatma! (Push)
+
+Her şey hazır. Şimdi kodlarını GitHub'a gönderelim ve şovu izleyelim.
+
+Terminali proje ana klasöründe aç
+
+```bash
+git init 
+git add .
+git commit -m "CI/CD boru hattı eklendi ve Remote State'e geçildi"
+git branch -M main
+git remote add origin https://github.com/sutluibrahim3-netizen/Terraform-AI-Pipeline
+git push -u origin main
+
+    
