@@ -6,15 +6,15 @@ Terraform kullanılarak Infrastructure as Code (IaC) prensibiyle geliştirilmiş
 
 # 🚀 Mimari ve Teknolojiler
 # ------------------------------------------------
-# Terraform – Altyapının kod ile yönetilmesi
-# GitHub Actions – CI/CD süreçleri ve otomatik deployment
-# AWS CodePipeline – Lambda fonksiyonlarının sürekli dağıtımı
-# AWS Lambda – Haber toplama ve işleme (Python)
-# AWS Bedrock – AI ile haber özetleme
-# AWS Polly – Haberleri doğal insan sesine dönüştürme
-# Amazon S3 – Ses dosyaları ve Terraform state depolama
-# Amazon DynamoDB – İşlenmiş haber takibi (mükerrerliği önleme)
-# Amazon EventBridge – Botun her sabah otomatik çalışması
+Terraform – Altyapının kod ile yönetilmesi
+GitHub Actions – CI/CD süreçleri ve otomatik deployment
+AWS CodePipeline – Lambda fonksiyonlarının sürekli dağıtımı
+AWS Lambda – Haber toplama ve işleme (Python)
+AWS Bedrock – AI ile haber özetleme
+AWS Polly – Haberleri doğal insan sesine dönüştürme
+Amazon S3 – Ses dosyaları ve Terraform state depolama
+Amazon DynamoDB – İşlenmiş haber takibi (mükerrerliği önleme)
+Amazon EventBridge – Botun her sabah otomatik çalışması
 
 
 # 📂 Proje Yapısı
