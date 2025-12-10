@@ -1,57 +1,78 @@
 # 📰 Serverless AI Haber Botu (Terraform & AWS)
 
-Bu proje, AWS üzerinde çalışan tamamen sunucusuz (serverless) bir yapay zeka haber botudur.
-Terraform kullanılarak Infrastructure as Code (IaC) prensibiyle geliştirilmiştir.Bot, haberleri toplar → AWS Bedrock ile özetler → AWS Polly ile “podcast” sesine dönüştürür.
+AWS üzerinde çalışan tamamen **sunucusuz (serverless)** bir yapay zeka haber botudur. Tüm altyapı **Terraform** ile yönetilir ve CI/CD süreçleri otomatik olarak GitHub Actions + CodePipeline üzerinden çalışır.
 
+Bot; haberleri toplar → **AWS Bedrock** ile özetler → **AWS Polly** ile doğal insan sesiyle **podcast formatında** çıktı üretir.
 
-# 🚀 Mimari ve Teknolojiler
-# ------------------------------------------------
-Terraform – Altyapının kod ile yönetilmesi
-GitHub Actions – CI/CD süreçleri ve otomatik deployment
-AWS CodePipeline – Lambda fonksiyonlarının sürekli dağıtımı
-AWS Lambda – Haber toplama ve işleme (Python)
-AWS Bedrock – AI ile haber özetleme
-AWS Polly – Haberleri doğal insan sesine dönüştürme
-Amazon S3 – Ses dosyaları ve Terraform state depolama
-Amazon DynamoDB – İşlenmiş haber takibi (mükerrerliği önleme)
-Amazon EventBridge – Botun her sabah otomatik çalışması
+---
 
+## 🚀 Mimari ve Teknolojiler
 
-# 📂 Proje Yapısı
-# ------------------------------------------------
-# .
-# ├── .github/workflows/      # GitHub Actions tanımları
-# ├── news-terraform/         # Terraform altyapı kodları
-# │   ├── main.tf             # Lambda, IAM, DynamoDB vb.
-# │   ├── pipeline.tf         # AWS CodePipeline tanımı
-# │   ├── variables.tf        # Değişkenler
-# │   └── outputs.tf          # Çıktı değerleri
-# └── README.md               # Dokümantasyon
+Bu proje aşağıdaki AWS servislerini otomatik olarak kurar ve yapılandırır:
 
+* **Terraform** – Tüm altyapının kod ile yönetilmesi
+* **GitHub Actions** – CI/CD süreçleri ve otomatik deployment
+* **AWS CodePipeline** – Lambda fonksiyonlarının sürekli dağıtımı
+* **AWS Lambda** – Haber toplama ve işleme (Python)
+* **AWS Bedrock** – Haber metinlerinin AI ile özetlenmesi
+* **AWS Polly** – Metnin doğal insan sesine dönüştürülmesi
+* **Amazon S3** – Ses dosyalarının ve Terraform state'in saklanması
+* **Amazon DynamoDB** – İşlenen haberlerin takibi (mükerrerliği önleme)
+* **Amazon EventBridge** – Botun her sabah otomatik tetiklenmesi
 
-# 🛠️ Kurulum ve Dağıtım (Deployment)
-# ------------------------------------------------
-# Bu proje CI/CD ile tamamen otomatiktir.
-# Manuel kurulum yapmanıza gerek yoktur.
+---
 
-# 1) Repoyu fork edin veya klonlayın.
-# 2) GitHub → Settings → Secrets and variables → Actions kısmına girin.
+## 📂 Proje Yapısı
 
-# Eklenmesi gereken Secret'lar:
-#   AWS_ACCESS_KEY_ID       = AWS erişim anahtarı
-#   AWS_SECRET_ACCESS_KEY   = AWS gizli anahtarı
+```
+.
+├── .github/workflows/      # GitHub Actions (CI/CD)
+├── news-terraform/         # Terraform altyapı kodları
+│   ├── main.tf             # AWS kaynakları (Lambda, IAM, DynamoDB vb.)
+│   ├── pipeline.tf         # AWS CodePipeline tanımları
+│   ├── variables.tf        # Değişken tanımları
+│   └── outputs.tf          # Çıktı değerleri
+└── README.md               # Proje dokümantasyonu
+```
 
-# 3) main dalına push edin → CI/CD otomatik kurulum yapacaktır.
+---
 
+## 🛠️ Kurulum ve Dağıtım (Deployment)
 
-# 🧪 Manuel Çalıştırma (Opsiyonel)
-# ------------------------------------------------
-cd news-terraform
+Bu proje CI/CD ile **tamamen otomatiktir**. Manuel kurulum gerekmez.
+
+### 🔐 1. Gerekli GitHub Secrets
+
+GitHub → **Settings → Secrets and variables → Actions** bölümüne gidin ve şu değerleri ekleyin:
+
+```
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+```
+
+### 🚀 2. Deploy
+
+Kodu **main branch**'ine push ettiğinizde tüm AWS kaynakları otomatik olarak oluşturulur.
+
+---
+
+## 🧪 Manuel Çalıştırma (Opsiyonel)
+
+Yerel olarak Terraform çalıştırmak isterseniz:
+
+```bash
+tcd news-terraform
 terraform init
 terraform plan
 terraform apply
+```
 
+---
 
-# 📜 Lisans
-# ------------------------------------------------
-# Bu proje MIT Lisansı ile lisanslanmıştır.
+## 📜 Lisans
+
+Bu proje **MIT Lisansı** ile lisanslanmıştır.
+
+---
+
+Hazırlanmıştır: **Serverless AI Haber Botu – Terraform & AWS**
