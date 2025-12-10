@@ -1,78 +1,128 @@
-# 📰 Serverless AI Haber Botu (Terraform & AWS)
+📰 Serverless AI Haber Botu (Terraform & AWS & React)
 
-AWS üzerinde çalışan tamamen **sunucusuz (serverless)** bir yapay zeka haber botudur. Tüm altyapı **Terraform** ile yönetilir ve CI/CD süreçleri otomatik olarak GitHub Actions + CodePipeline üzerinden çalışır.
+AWS üzerinde çalışan, tamamen sunucusuz (serverless) bir yapay zeka haber botu ve bu botun ürettiği içerikleri sunan React tabanlı web arayüzü.
 
-Bot; haberleri toplar → **AWS Bedrock** ile özetler → **AWS Polly** ile doğal insan sesiyle **podcast formatında** çıktı üretir.
+Tüm altyapı Terraform ile yönetilir ve CI/CD süreçleri otomatik olarak GitHub Actions + CodePipeline üzerinden çalışır.
 
----
+Bot; haberleri toplar → AWS Bedrock ile özetler → AWS Polly ile doğal insan sesiyle podcast formatında çıktı üretir. React arayüzü ise bu içerikleri son kullanıcıya sunar.
 
-## 🚀 Mimari ve Teknolojiler
+🚀 Mimari ve Teknolojiler
 
-Bu proje aşağıdaki AWS servislerini otomatik olarak kurar ve yapılandırır:
+Bu proje aşağıdaki teknolojileri ve AWS servislerini kullanır:
 
-* **Terraform** – Tüm altyapının kod ile yönetilmesi
-* **GitHub Actions** – CI/CD süreçleri ve otomatik deployment
-* **AWS CodePipeline** – Lambda fonksiyonlarının sürekli dağıtımı
-* **AWS Lambda** – Haber toplama ve işleme (Python)
-* **AWS Bedrock** – Haber metinlerinin AI ile özetlenmesi
-* **AWS Polly** – Metnin doğal insan sesine dönüştürülmesi
-* **Amazon S3** – Ses dosyalarının ve Terraform state'in saklanması
-* **Amazon DynamoDB** – İşlenen haberlerin takibi (mükerrerliği önleme)
-* **Amazon EventBridge** – Botun her sabah otomatik tetiklenmesi
+Terraform: Tüm altyapının kod ile yönetilmesi (IaC).
 
----
+React (Vite): Modern ve hızlı web arayüzü.
 
-## 📂 Proje Yapısı
+GitHub Actions: CI/CD süreçleri ve otomatik deployment.
 
-```
+AWS CodePipeline: Lambda fonksiyonlarının sürekli dağıtımı.
+
+AWS Lambda: Haber toplama ve işleme (Python).
+
+AWS Bedrock: Haber metinlerinin AI ile özetlenmesi.
+
+AWS Polly: Metnin doğal insan sesine dönüştürülmesi.
+
+Amazon S3: Ses dosyalarının, web sitesinin ve Terraform state'in saklanması.
+
+Amazon DynamoDB: İşlenen haberlerin takibi (Mükerrerliği önleme).
+
+Amazon EventBridge: Botun her sabah otomatik tetiklenmesi.
+
+📂 Proje Yapısı
+
 .
 ├── .github/workflows/      # GitHub Actions (CI/CD)
 ├── news-terraform/         # Terraform altyapı kodları
-│   ├── main.tf             # AWS kaynakları (Lambda, IAM, DynamoDB vb.)
-│   ├── pipeline.tf         # AWS CodePipeline tanımları
-│   ├── variables.tf        # Değişken tanımları
-│   └── outputs.tf          # Çıktı değerleri
+│   ├── main.tf             # AWS kaynakları
+│   ├── pipeline.tf         # CI/CD tanımları
+│   └── lambda/             # Python bot kodları
+│       ├── ingestor.py     # Test edilecek ana bot dosyası
+│       └── ...
+├── frontend/               # React Web Uygulaması
+│   ├── src/
+│   ├── package.json
+│   └── ...
 └── README.md               # Proje dokümantasyonu
-```
 
----
 
-## 🛠️ Kurulum ve Dağıtım (Deployment)
+🛠️ Kurulum ve Dağıtım (Deployment)
 
-Bu proje CI/CD ile **tamamen otomatiktir**. Manuel kurulum gerekmez.
+Bu proje CI/CD ile tamamen otomatiktir. Manuel kurulum gerekmez.
 
-### 🔐 1. Gerekli GitHub Secrets
+1. Gerekli GitHub Secrets
 
-GitHub → **Settings → Secrets and variables → Actions** bölümüne gidin ve şu değerleri ekleyin:
+GitHub → Settings → Secrets and variables → Actions bölümüne gidin ve şu değerleri ekleyin:
 
-```
 AWS_ACCESS_KEY_ID
+
 AWS_SECRET_ACCESS_KEY
-```
 
-### 🚀 2. Deploy
+2. Deploy
 
-Kodu **main branch**'ine push ettiğinizde tüm AWS kaynakları otomatik olarak oluşturulur.
+Kodu main branch'ine push ettiğinizde tüm AWS kaynakları otomatik olarak oluşturulur.
 
----
+💻 Yerel Geliştirme (Local Development)
 
-## 🧪 Manuel Çalıştırma (Opsiyonel)
+Projeyi bilgisayarınızda geliştirmek ve test etmek için aşağıdaki adımları izleyin.
 
-Yerel olarak Terraform çalıştırmak isterseniz:
+A. React Arayüzünü Çalıştırma
 
-```bash
-tcd news-terraform
+Web arayüzünü yerel ortamda (localhost) çalıştırmak için:
+
+Frontend klasörüne gidin:
+
+cd frontend
+
+
+Bağımlılıkları yükleyin:
+
+npm install
+
+
+Uygulamayı başlatın:
+
+npm run dev
+
+
+Tarayıcınızda http://localhost:5173 (veya terminalde belirtilen port) adresine giderek arayüzü görebilirsiniz.
+
+B. Python Botunu Test Etme (ingestor.py)
+
+AWS'ye deploy etmeden önce botun haber çekme ve işleme mantığını test etmek için:
+
+Lambda kodlarının olduğu klasöre gidin:
+
+cd news-terraform/lambda
+
+
+(Not: Klasör yolu projenize göre değişebilir)
+
+Sanal ortamı kurun ve kütüphaneleri yükleyin (Önerilen):
+
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+
+Test kodunu çalıştırın:
+
+python ingestor.py
+
+
+Bu komut, botu manuel olarak tetikler ve terminalde haberlerin çekilip işlendiğini simüle eder.
+
+🧪 Terraform Manuel Çalıştırma (Opsiyonel)
+
+Sadece altyapıyı yerel bilgisayarınızdan güncellemek isterseniz:
+
+cd news-terraform
 terraform init
 terraform plan
 terraform apply
-```
 
----
 
-## 📜 Lisans
+📜 Lisans
 
-Bu proje **MIT Lisansı** ile lisanslanmıştır.
-
----
-
-Hazırlanmıştır: **Serverless AI Haber Botu – Terraform & AWS**
+Bu proje MIT Lisansı ile lisanslanmıştır.
