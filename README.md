@@ -75,7 +75,7 @@ Yerel ortamda hem React arayüzünü hem de botu çalıştırabilirsiniz.
 Frontend klasörüne gidin:
 
 ```bash
-cd frontend
+cd haber-sitesi
 ```
 
 Bağımlılıkları yükleyin:
@@ -105,24 +105,18 @@ adresine gidin.
 Lambda bot koduna gidin:
 
 ```bash
-cd news-terraform/lambda
+cd news-terraform/src
 ```
 
-Sanal ortam (önerilir):
+
+Bu projede bot, AWS EventBridge üzerinden 2 saatte bir otomatik olarak tetiklenir.
+Yani sistem normalde tamamen otomatik çalışır. Ancak geliştirme veya test amaçlı olarak botu manuel tetiklemek isterseniz:
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+python3 ingestor.py
 ```
 
-Botu çalıştırın:
-
-```bash
-python ingestor.py
-```
-
-Bu komut botun yerelde haber işleme mantığını test eder.
+Bu komut haber çekmek,haber özetlemek ve seslendirmek için oluşturulan lambda fonksiyondur.
 
 ---
 
@@ -145,4 +139,3 @@ Bu proje **MIT Lisansı** ile lisanslanmıştır.
 
 ---
 
-Hazırlayan: **Serverless AI Haber Botu – Terraform, AWS & React**
