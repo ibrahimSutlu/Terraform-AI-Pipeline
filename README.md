@@ -1,9 +1,7 @@
 # 📰 Serverless AI Haber Botu (Terraform & AWS)
 
-# Bu proje, AWS üzerinde çalışan tamamen sunucusuz (serverless) bir yapay zeka haber botudur.
-# Terraform kullanılarak Infrastructure as Code (IaC) prensibiyle geliştirilmiştir.
-
-# Bot, haberleri toplar → AWS Bedrock ile özetler → AWS Polly ile “podcast” sesine dönüştürür.
+Bu proje, AWS üzerinde çalışan tamamen sunucusuz (serverless) bir yapay zeka haber botudur.
+Terraform kullanılarak Infrastructure as Code (IaC) prensibiyle geliştirilmiştir.Bot, haberleri toplar → AWS Bedrock ile özetler → AWS Polly ile “podcast” sesine dönüştürür.
 
 
 # 🚀 Mimari ve Teknolojiler
