@@ -32,35 +32,21 @@ Bu proje aşağıdaki teknolojileri ve AWS servislerini kullanır:
 ├── .github/workflows/      # GitHub Actions (CI/CD)
 ├── news-terraform/         # Terraform altyapı kodları
 │   ├── main.tf             # AWS kaynakları
+│   ├── api.tf         # CI/CD tanımları
+│   ├── dynamodb.tf         # CI/CD tanımları
+│   ├── lambda.tf         # CI/CD tanımları
+│   ├── outputs.tf         # CI/CD tanımları
 │   ├── pipeline.tf         # CI/CD tanımları
-│   └── lambda/             # Python bot kodları
+
+│   └── src/             # Python bot kodları
 │       ├── ingestor.py     # Test edilecek ana bot dosyası
 │       └── ...
-├── frontend/               # React Web Uygulaması
+├── haber-sitesi/               # React Web Uygulaması
 │   ├── src/
 │   ├── package.json
 │   └── ...
 └── README.md               # Proje dokümantasyonu
 ```
-
----
-
-## 🛠️ Kurulum ve Dağıtım (Deployment)
-
-Bu proje CI/CD ile tamamen otomatiktir. Manuel işlem gerektirmez.
-
-### **1️⃣ Gerekli GitHub Secrets**
-
-GitHub → **Settings → Secrets and variables → Actions** bölümüne gidip şu değerleri ekleyin:
-
-```
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-```
-
-### **2️⃣ Deploy**
-
-Kodu **main branch**'ine push ettiğinizde altyapı ve bot otomatik olarak deploy edilir.
 
 ---
 
