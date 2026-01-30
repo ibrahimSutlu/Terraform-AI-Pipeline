@@ -13,7 +13,7 @@ Bot; haberleri toplar → **AWS Bedrock** ile özetler → **AWS Polly** ile do�
 
 ---
 
-🏗️ AWS Architecture Overview
+## 🏗️ AWS Architecture Overview
 ![Terraform-AI-Pipeline](assets/mimari.png)
 
 ## 🚀 Mimari ve Teknolojiler
