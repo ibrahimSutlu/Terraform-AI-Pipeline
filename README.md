@@ -8,6 +8,10 @@ Bot; haberleri toplar → **AWS Bedrock** ile özetler → **AWS Polly** ile do�
 
 ---
 
+## 🖥️ UI Preview
+![Terraform-AI-Pipeline](assets/aipipleine.png)
+
+
 ## 🚀 Mimari ve Teknolojiler
 
 Bu proje aşağıdaki teknolojileri ve AWS servislerini kullanır:
