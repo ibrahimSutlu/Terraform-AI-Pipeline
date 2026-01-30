@@ -11,6 +11,8 @@ Bot; haberleri toplar → **AWS Bedrock** ile özetler → **AWS Polly** ile do�
 ## 🖥️ UI Preview
 ![Terraform-AI-Pipeline](assets/aipipleine.png)
 
+🏗️ AWS Architecture Overview
+![Terraform-AI-Pipeline](assets/mimari.png)
 
 ## 🚀 Mimari ve Teknolojiler
 
